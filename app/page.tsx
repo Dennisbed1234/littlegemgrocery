@@ -1,0 +1,208 @@
+import { STORE, formatClock, getStoreStatus } from "@/lib/store";
+
+const STOCK = [
+  {
+    title: "Daily staples",
+    copy: "Milk, eggs, butter, cheese, bread, juice, and baking basics for the week.",
+  },
+  {
+    title: "Snacks & frozen",
+    copy: "Chips, candy, ice cream, frozen meals, and the hard-to-find treats people come back for.",
+  },
+  {
+    title: "Produce & household",
+    copy: "A compact fruit-and-veg selection plus cleaning products and other last-minute household needs.",
+  },
+  {
+    title: "Lottery",
+    copy: "Licensed lottery ticket machines on Superior Street — grab a ticket with the groceries.",
+  },
+  {
+    title: "U-Haul dealer",
+    copy: "Neighborhood U-Haul point for trailer and moving-truck rentals when you need extra wheels.",
+  },
+  {
+    title: "Pay your way",
+    copy: "Debit, credit, and tap. Wheelchair-accessible entrance and in-store shopping.",
+  },
+];
+
+const REVIEWS = [
+  {
+    quote:
+      "A great, convenient shop with lots of selection — from fruit to cleaning products and hard-to-find snacks.",
+    name: "Neighbour review",
+  },
+  {
+    quote:
+      "Good selection for a small independent place: dairy, baking supplies, frozen foods, juice, and ice cream.",
+    name: "James Bay regular",
+  },
+  {
+    quote:
+      "Friendly service and a surprising range for a compact corner grocery. Easy stop when you only need a few things.",
+    name: "Visitor note",
+  },
+];
+
+export default function HomePage() {
+  const status = getStoreStatus();
+
+  return (
+    <>
+      <header className="site-header">
+        <div className="wrap nav">
+          <a className="brand" href="#top">
+            <span className="brand-mark">LG</span>
+            Little Gem
+          </a>
+          <ul className="nav-links">
+            <li><a href="#hours">Hours</a></li>
+            <li><a href="#stock">In store</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#visit">Visit</a></li>
+          </ul>
+          <a className="header-cta" href={STORE.phoneHref}>
+            Call the shop
+          </a>
+        </div>
+      </header>
+
+      <main id="top">
+        <section className="hero">
+          <div className="wrap hero-grid">
+            <div>
+              <div className="status-chip">
+                <span className={`dot ${status.isOpen ? "open" : "closed"}`} />
+                {status.label}
+              </div>
+              <p className="eyebrow">James Bay · Victoria, BC</p>
+              <h1>Little Gem Grocery</h1>
+              <p className="lede">
+                An independent corner store on Superior Street. Come in for milk,
+                snacks, household bits, lottery tickets — the small things that
+                keep a neighbourhood moving.
+              </p>
+              <div className="hero-actions">
+                <a className="btn btn-primary" href={STORE.mapsUrl} target="_blank" rel="noreferrer">
+                  Get directions
+                </a>
+                <a className="btn btn-ghost" href={STORE.phoneHref}>
+                  {STORE.phone}
+                </a>
+              </div>
+            </div>
+            <div className="storefront" aria-hidden="true">
+              <div className="sign">
+                <strong>Little Gem</strong>
+                <span>Grocery</span>
+              </div>
+              <div className="awning" />
+              <div className="window-l" />
+              <div className="door" />
+              <div className="window-r" />
+            </div>
+          </div>
+        </section>
+
+        <section id="hours">
+          <div className="wrap hours-grid">
+            <div>
+              <p className="eyebrow">Open most days till 9</p>
+              <h2 className="section-title">Hours this week</h2>
+              <p>
+                Times follow the shop’s posted schedule in Pacific time. Always
+                worth a quick call if you’re coming late.
+              </p>
+            </div>
+            <div className="card">
+              <table className="hours-table">
+                <tbody>
+                  {STORE.hours.map((row) => (
+                    <tr key={row.day} className={row.day === status.weekday ? "today" : undefined}>
+                      <td>{row.day}</td>
+                      <td>
+                        {formatClock(row.open)} – {formatClock(row.close)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="stock">
+          <div className="wrap">
+            <p className="eyebrow">What you’ll find</p>
+            <h2 className="section-title">A compact shop with the useful stuff</h2>
+            <div className="stock-grid">
+              {STOCK.map((item) => (
+                <article className="card stock-card" key={item.title}>
+                  <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="reviews">
+          <div className="wrap">
+            <p className="eyebrow">{STORE.rating} on Google · {STORE.reviewCount} reviews</p>
+            <h2 className="section-title">What neighbours say</h2>
+            <div className="review-grid">
+              {REVIEWS.map((review) => (
+                <figure className="card" key={review.name}>
+                  <div className="stars" aria-hidden="true">★★★★☆</div>
+                  <blockquote className="quote">“{review.quote}”</blockquote>
+                  <figcaption className="cite">— {review.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="visit">
+          <div className="wrap visit-grid">
+            <div className="card">
+              <p className="eyebrow">Find us</p>
+              <h2 className="section-title">148 Superior Street</h2>
+              <ul className="contact-list">
+                <li>
+                  {STORE.address}
+                  <br />
+                  {STORE.city}, {STORE.country}
+                </li>
+                <li>
+                  Phone: <a href={STORE.phoneHref}>{STORE.phone}</a>
+                </li>
+                <li>
+                  <a href={STORE.mapsUrl} target="_blank" rel="noreferrer">
+                    Open in Google Maps
+                  </a>
+                </li>
+                <li>James Bay, a short walk from the Inner Harbour.</li>
+              </ul>
+            </div>
+            <div className="map-wrap">
+              <iframe
+                title="Map of Little Gem Grocery"
+                src={STORE.mapsEmbed}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div className="wrap footer-row">
+          <span>{STORE.name} · James Bay, Victoria</span>
+          <span>Independent neighbourhood grocery. Not affiliated with a chain.</span>
+        </div>
+      </footer>
+    </>
+  );
+}
