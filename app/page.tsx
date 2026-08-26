@@ -1,37 +1,75 @@
 import { STORE, formatClock, getStoreStatus } from "@/lib/store";
 import { StoreBanner } from "@/app/components/store-banner";
 
+const STORE_PHOTO =
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Little_Gem_Grocery_on_Superior_Street_in_Victoria_BC_Canada.png/1280px-Little_Gem_Grocery_on_Superior_Street_in_Victoria_BC_Canada.png";
+
+const GALLERY = [
+  {
+    src: STORE_PHOTO,
+    alt: "Little Gem Grocery on Superior Street at dusk",
+    caption: "Superior Street, James Bay",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=80",
+    alt: "Well-stocked grocery shelves",
+    caption: "Everyday shelves",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80",
+    alt: "Fresh produce at a grocery market",
+    caption: "Fresh produce",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=900&q=80",
+    alt: "Dairy and milk products",
+    caption: "Dairy staples",
+  },
+];
+
 const STOCK = [
   {
     title: "Daily staples",
     copy: "Milk, eggs, butter, cheese, bread, juice, and baking basics for the week.",
+    image:
+      "https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "Snacks & frozen",
     copy: "Chips, candy, ice cream, frozen meals, and the hard-to-find treats people come back for.",
+    image:
+      "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "Produce & household",
     copy: "A compact fruit-and-veg selection plus cleaning products and other last-minute household needs.",
+    image:
+      "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "Lottery",
-    copy: "Licensed lottery ticket machines on Superior Street — grab a ticket with the groceries.",
+    copy: "Licensed lottery ticket machines on Superior Street \u2014 grab a ticket with the groceries.",
+    image:
+      "https://images.unsplash.com/photo-1513542789411-95c06dc5da1d?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "U-Haul dealer",
     copy: "Neighborhood U-Haul point for trailer and moving-truck rentals when you need extra wheels.",
+    image:
+      "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "Pay your way",
     copy: "Debit, credit, and tap. Wheelchair-accessible entrance and in-store shopping.",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80",
   },
 ];
 
 const REVIEWS = [
   {
     quote:
-      "A great, convenient shop with lots of selection — from fruit to cleaning products and hard-to-find snacks.",
+      "A great, convenient shop with lots of selection \u2014 from fruit to cleaning products and hard-to-find snacks.",
     name: "Neighbour review",
   },
   {
@@ -60,8 +98,8 @@ export default function HomePage() {
           </a>
           <ul className="nav-links">
             <li><a href="#hours">Hours</a></li>
+            <li><a href="#photos">Photos</a></li>
             <li><a href="#stock">In store</a></li>
-            <li><a href="#reviews">Reviews</a></li>
             <li><a href="#visit">Visit</a></li>
           </ul>
           <a className="header-cta" href={STORE.phoneHref}>
@@ -78,11 +116,11 @@ export default function HomePage() {
                 <span className={`dot ${status.isOpen ? "open" : "closed"}`} />
                 {status.label}
               </div>
-              <p className="eyebrow">James Bay · Victoria, BC</p>
+              <p className="eyebrow">James Bay \u00b7 Victoria, BC</p>
               <h1>Little Gem Grocery</h1>
               <p className="lede">
                 An independent corner store on Superior Street. Come in for milk,
-                snacks, household bits, lottery tickets — the small things that
+                snacks, household bits, lottery tickets \u2014 the small things that
                 keep a neighbourhood moving.
               </p>
               <div className="hero-actions">
@@ -94,15 +132,38 @@ export default function HomePage() {
                 </a>
               </div>
             </div>
-            <div className="storefront" aria-hidden="true">
-              <div className="sign">
-                <strong>Little Gem</strong>
-                <span>Grocery</span>
-              </div>
-              <div className="awning" />
-              <div className="window-l" />
-              <div className="door" />
-              <div className="window-r" />
+            <figure className="hero-photo">
+              <img
+                src={STORE_PHOTO}
+                alt="Little Gem Grocery storefront on Superior Street in Victoria"
+                width={1280}
+                height={853}
+              />
+              <figcaption>
+                Photo: Nevin Thompson ·{" "}
+                <a
+                  href="https://commons.wikimedia.org/wiki/File:Little_Gem_Grocery_on_Superior_Street_in_Victoria_BC_Canada.png"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  CC BY-SA 4.0
+                </a>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="photos">
+          <div className="wrap">
+            <p className="eyebrow">Around the shop</p>
+            <h2 className="section-title">A closer look</h2>
+            <div className="photo-grid">
+              {GALLERY.map((shot) => (
+                <figure className="photo-card" key={shot.caption}>
+                  <img src={shot.src} alt={shot.alt} loading="lazy" />
+                  <figcaption>{shot.caption}</figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </section>
@@ -113,8 +174,8 @@ export default function HomePage() {
               <p className="eyebrow">Open most days till 9</p>
               <h2 className="section-title">Hours this week</h2>
               <p>
-                Times follow the shop’s posted schedule in Pacific time. Always
-                worth a quick call if you’re coming late.
+                Times follow the shop\u2019s posted schedule in Pacific time. Always
+                worth a quick call if you\u2019re coming late.
               </p>
             </div>
             <div className="card">
@@ -124,7 +185,7 @@ export default function HomePage() {
                     <tr key={row.day} className={row.day === status.weekday ? "today" : undefined}>
                       <td>{row.day}</td>
                       <td>
-                        {formatClock(row.open)} – {formatClock(row.close)}
+                        {formatClock(row.open)} \u2013 {formatClock(row.close)}
                       </td>
                     </tr>
                   ))}
@@ -136,11 +197,14 @@ export default function HomePage() {
 
         <section id="stock">
           <div className="wrap">
-            <p className="eyebrow">What you’ll find</p>
+            <p className="eyebrow">What you\u2019ll find</p>
             <h2 className="section-title">A compact shop with the useful stuff</h2>
             <div className="stock-grid">
               {STOCK.map((item) => (
                 <article className="card stock-card" key={item.title}>
+                  <div className="stock-photo">
+                    <img src={item.image} alt="" loading="lazy" />
+                  </div>
                   <h3>{item.title}</h3>
                   <p>{item.copy}</p>
                 </article>
@@ -151,14 +215,14 @@ export default function HomePage() {
 
         <section id="reviews">
           <div className="wrap">
-            <p className="eyebrow">{STORE.rating} on Google · {STORE.reviewCount} reviews</p>
+            <p className="eyebrow">{STORE.rating} on Google \u00b7 {STORE.reviewCount} reviews</p>
             <h2 className="section-title">What neighbours say</h2>
             <div className="review-grid">
               {REVIEWS.map((review) => (
                 <figure className="card" key={review.name}>
-                  <div className="stars" aria-hidden="true">★★★★☆</div>
-                  <blockquote className="quote">“{review.quote}”</blockquote>
-                  <figcaption className="cite">— {review.name}</figcaption>
+                  <div className="stars" aria-hidden="true">\u2605\u2605\u2605\u2605\u2606</div>
+                  <blockquote className="quote">\u201c{review.quote}\u201d</blockquote>
+                  <figcaption className="cite">\u2014 {review.name}</figcaption>
                 </figure>
               ))}
             </div>
@@ -201,7 +265,7 @@ export default function HomePage() {
 
       <footer>
         <div className="wrap footer-row">
-          <span>{STORE.name} · James Bay, Victoria</span>
+          <span>{STORE.name} \u00b7 James Bay, Victoria</span>
           <span>
             Independent neighbourhood grocery.{" "}
             <a href="/admin">Staff desk</a>
