@@ -1,4 +1,5 @@
 import { STORE, formatClock, getStoreStatus } from "@/lib/store";
+import { StoreBanner } from "@/app/components/store-banner";
 
 const STOCK = [
   {
@@ -50,6 +51,7 @@ export default function HomePage() {
 
   return (
     <>
+      <StoreBanner />
       <header className="site-header">
         <div className="wrap nav">
           <a className="brand" href="#top">
@@ -200,7 +202,10 @@ export default function HomePage() {
       <footer>
         <div className="wrap footer-row">
           <span>{STORE.name} · James Bay, Victoria</span>
-          <span>Independent neighbourhood grocery. Not affiliated with a chain.</span>
+          <span>
+            Independent neighbourhood grocery.{" "}
+            <a href="/admin">Staff desk</a>
+          </span>
         </div>
       </footer>
     </>
