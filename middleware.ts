@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SESSION_COOKIE, verifySessionToken } from "@/lib/auth";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get(SESSION_COOKIE)?.value;
-  const ok = verifySessionToken(token);
+  const ok = await verifySessionToken(token);
 
   if (pathname.startsWith("/admin") && pathname !== "/admin/login" && !ok) {
     const url = request.nextUrl.clone();
