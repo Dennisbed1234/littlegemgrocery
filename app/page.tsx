@@ -1,29 +1,35 @@
 import { STORE, formatClock, getStoreStatus } from "@/lib/store";
 import { StoreBanner } from "@/app/components/store-banner";
 
-const STORE_PHOTO =
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Little_Gem_Grocery_on_Superior_Street_in_Victoria_BC_Canada.png/1280px-Little_Gem_Grocery_on_Superior_Street_in_Victoria_BC_Canada.png";
+/** Real photos of Little Gem Grocery (Superior St, Victoria). */
+const PHOTOS = {
+  exterior: "https://i.imgur.com/KR6GbCu.jpeg",
+  aisleCoolers: "https://i.imgur.com/NgYOR6y.jpeg",
+  aisleShelves: "https://i.imgur.com/8sNP9e9.jpeg",
+  personalCare: "https://i.imgur.com/7iuC3L1.jpeg",
+  candy: "https://i.imgur.com/MbOpBpZ.jpeg",
+};
 
 const GALLERY = [
   {
-    src: STORE_PHOTO,
-    alt: "Little Gem Grocery on Superior Street at dusk",
+    src: PHOTOS.exterior,
+    alt: "Little Gem Grocery storefront on Superior Street",
     caption: "Superior Street, James Bay",
   },
   {
-    src: "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=80",
-    alt: "Well-stocked grocery shelves",
-    caption: "Everyday shelves",
+    src: PHOTOS.aisleCoolers,
+    alt: "Coolers and drinks aisle inside Little Gem",
+    caption: "Coolers and drinks",
   },
   {
-    src: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80",
-    alt: "Fresh produce at a grocery market",
-    caption: "Fresh produce",
+    src: PHOTOS.aisleShelves,
+    alt: "Grocery shelves down the main aisle",
+    caption: "Main aisle",
   },
   {
-    src: "https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=900&q=80",
-    alt: "Dairy and milk products",
-    caption: "Dairy staples",
+    src: PHOTOS.candy,
+    alt: "Candy and chocolate selection",
+    caption: "Candy aisle",
   },
 ];
 
@@ -31,38 +37,32 @@ const STOCK = [
   {
     title: "Daily staples",
     copy: "Milk, eggs, butter, cheese, bread, juice, and baking basics for the week.",
-    image:
-      "https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=600&q=80",
+    image: PHOTOS.aisleShelves,
   },
   {
     title: "Snacks & frozen",
     copy: "Chips, candy, ice cream, frozen meals, and the hard-to-find treats people come back for.",
-    image:
-      "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=600&q=80",
+    image: PHOTOS.candy,
   },
   {
-    title: "Produce & household",
-    copy: "A compact fruit-and-veg selection plus cleaning products and other last-minute household needs.",
-    image:
-      "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80",
+    title: "Household & care",
+    copy: "Cleaning products, personal care, and other last-minute household needs.",
+    image: PHOTOS.personalCare,
   },
   {
     title: "Lottery",
     copy: "Licensed lottery ticket machines on Superior Street - grab a ticket with the groceries.",
-    image:
-      "https://images.unsplash.com/photo-1513542789411-95c06dc5da1d?auto=format&fit=crop&w=600&q=80",
+    image: PHOTOS.exterior,
   },
   {
     title: "U-Haul dealer",
     copy: "Neighborhood U-Haul point for trailer and moving-truck rentals when you need extra wheels.",
-    image:
-      "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=600&q=80",
+    image: PHOTOS.aisleCoolers,
   },
   {
     title: "Pay your way",
     copy: "Debit, credit, and tap. Wheelchair-accessible entrance and in-store shopping.",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80",
+    image: PHOTOS.aisleCoolers,
   },
 ];
 
@@ -134,21 +134,12 @@ export default function HomePage() {
             </div>
             <figure className="hero-photo">
               <img
-                src={STORE_PHOTO}
+                src={PHOTOS.exterior}
                 alt="Little Gem Grocery storefront on Superior Street in Victoria"
-                width={1280}
-                height={853}
+                width={948}
+                height={1200}
               />
-              <figcaption>
-                Photo: Nevin Thompson ·{" "}
-                <a
-                  href="https://commons.wikimedia.org/wiki/File:Little_Gem_Grocery_on_Superior_Street_in_Victoria_BC_Canada.png"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  CC BY-SA 4.0
-                </a>
-              </figcaption>
+              <figcaption>Little Gem Grocery · 148 Superior Street</figcaption>
             </figure>
           </div>
         </section>
