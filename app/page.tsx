@@ -48,7 +48,7 @@ const STOCK = [
   },
   {
     title: "Lottery",
-    copy: "Licensed lottery ticket machines on Superior Street \u2014 grab a ticket with the groceries.",
+    copy: "Licensed lottery ticket machines on Superior Street - grab a ticket with the groceries.",
     image:
       "https://images.unsplash.com/photo-1513542789411-95c06dc5da1d?auto=format&fit=crop&w=600&q=80",
   },
@@ -69,7 +69,7 @@ const STOCK = [
 const REVIEWS = [
   {
     quote:
-      "A great, convenient shop with lots of selection \u2014 from fruit to cleaning products and hard-to-find snacks.",
+      "A great, convenient shop with lots of selection - from fruit to cleaning products and hard-to-find snacks.",
     name: "Neighbour review",
   },
   {
@@ -116,11 +116,11 @@ export default function HomePage() {
                 <span className={`dot ${status.isOpen ? "open" : "closed"}`} />
                 {status.label}
               </div>
-              <p className="eyebrow">James Bay \u00b7 Victoria, BC</p>
+              <p className="eyebrow">James Bay · Victoria, BC</p>
               <h1>Little Gem Grocery</h1>
               <p className="lede">
                 An independent corner store on Superior Street. Come in for milk,
-                snacks, household bits, lottery tickets \u2014 the small things that
+                snacks, household bits, lottery tickets - the small things that
                 keep a neighbourhood moving.
               </p>
               <div className="hero-actions">
@@ -174,8 +174,8 @@ export default function HomePage() {
               <p className="eyebrow">Open most days till 9</p>
               <h2 className="section-title">Hours this week</h2>
               <p>
-                Times follow the shop\u2019s posted schedule in Pacific time. Always
-                worth a quick call if you\u2019re coming late.
+                Times follow the shop's posted schedule. Always worth a quick
+                call if you're coming late.
               </p>
             </div>
             <div className="card">
@@ -185,7 +185,7 @@ export default function HomePage() {
                     <tr key={row.day} className={row.day === status.weekday ? "today" : undefined}>
                       <td>{row.day}</td>
                       <td>
-                        {formatClock(row.open)} \u2013 {formatClock(row.close)}
+                        {formatClock(row.open)} - {formatClock(row.close)}
                       </td>
                     </tr>
                   ))}
@@ -197,7 +197,7 @@ export default function HomePage() {
 
         <section id="stock">
           <div className="wrap">
-            <p className="eyebrow">What you\u2019ll find</p>
+            <p className="eyebrow">What you'll find</p>
             <h2 className="section-title">A compact shop with the useful stuff</h2>
             <div className="stock-grid">
               {STOCK.map((item) => (
@@ -215,14 +215,14 @@ export default function HomePage() {
 
         <section id="reviews">
           <div className="wrap">
-            <p className="eyebrow">{STORE.rating} on Google \u00b7 {STORE.reviewCount} reviews</p>
+            <p className="eyebrow">{STORE.rating} on Google · {STORE.reviewCount} reviews</p>
             <h2 className="section-title">What neighbours say</h2>
             <div className="review-grid">
               {REVIEWS.map((review) => (
                 <figure className="card" key={review.name}>
-                  <div className="stars" aria-hidden="true">\u2605\u2605\u2605\u2605\u2606</div>
-                  <blockquote className="quote">\u201c{review.quote}\u201d</blockquote>
-                  <figcaption className="cite">\u2014 {review.name}</figcaption>
+                  <div className="stars" aria-hidden="true">★★★★☆</div>
+                  <blockquote className="quote">&ldquo;{review.quote}&rdquo;</blockquote>
+                  <figcaption className="cite">— {review.name}</figcaption>
                 </figure>
               ))}
             </div>
@@ -265,7 +265,7 @@ export default function HomePage() {
 
       <footer>
         <div className="wrap footer-row">
-          <span>{STORE.name} \u00b7 James Bay, Victoria</span>
+          <span>{STORE.name} · James Bay, Victoria</span>
           <span>
             Independent neighbourhood grocery.{" "}
             <a href="/admin">Staff desk</a>
