@@ -19,8 +19,21 @@ export function StoreBanner() {
   if (!message) return null;
 
   return (
-    <div className="store-banner">
-      <div className="wrap">{message}</div>
+    <div
+      className="wrap"
+      style={{
+        maxWidth: "none",
+        width: "100%",
+        background: "#123a6b",
+        color: "#eef4fb",
+        padding: "0.6rem 1.25rem",
+        fontFamily: "Barlow Condensed, sans-serif",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        fontSize: "0.92rem",
+      }}
+    >
+      {message}
     </div>
   );
 }
