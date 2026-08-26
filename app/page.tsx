@@ -3,11 +3,11 @@ import { StoreBanner } from "@/app/components/store-banner";
 
 /** Real photos of Little Gem Grocery (Superior St, Victoria). */
 const PHOTOS = {
-  exterior: "https://i.imgur.com/KR6GbCu.jpeg",
-  aisleCoolers: "https://i.imgur.com/NgYOR6y.jpeg",
-  aisleShelves: "https://i.imgur.com/8sNP9e9.jpeg",
-  personalCare: "https://i.imgur.com/7iuC3L1.jpeg",
-  candy: "https://i.imgur.com/MbOpBpZ.jpeg",
+  exterior: "https://i.imgur.com/9EziDxf.jpeg",
+  aisleCoolers: "https://i.imgur.com/8pTJSQl.jpeg",
+  aisleShelves: "https://i.imgur.com/bfy5Avg.jpeg",
+  personalCare: "https://i.imgur.com/UAIyWJ0.jpeg",
+  candy: "https://i.imgur.com/PM5UPQe.jpeg",
 };
 
 const GALLERY = [
@@ -136,8 +136,8 @@ export default function HomePage() {
               <img
                 src={PHOTOS.exterior}
                 alt="Little Gem Grocery storefront on Superior Street in Victoria"
-                width={948}
-                height={1200}
+                width={1200}
+                height={1500}
               />
               <figcaption>Little Gem Grocery · 148 Superior Street</figcaption>
             </figure>
